@@ -1,4 +1,5 @@
 function [G,ASP] = gradient8(DEM,res,neigh)
+
 %R=gradient8(I,1,6);
 %imshow(R)
 %B = imgaussfilt(R)
@@ -81,5 +82,7 @@ ASP = G;
     I        = G2>G;
     G(I)     = G2(I);
     ASP(I)   = neigh;
+    
+   
 %end
 

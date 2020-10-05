@@ -4,7 +4,7 @@ function [p]= process_img(img_path)
 %     frequencies = [3.75];
     
     img = imread(img_path{1});
-    
+     %subplot(3,2,1),imshow(img),title('Imagen original');
     
     
 %     gaborMag = imgaborfilt(img, gabor(frequencies,angles));
@@ -19,8 +19,9 @@ function [p]= process_img(img_path)
 %     o6 = gaborMag(:,:,6);
 %     o7 = gaborMag(:,:,7);
 %     o8 = gaborMag(:,:,8);
-       o1=gaborExample2([2 4],[0 45 90 135 180 225 270 315],img,0);
-      
+       %o1=gaborExample2([2 4],[0 45 90 135 180 225 270 315],img,0);
+      [~,o1]=gradient8(img,3,1);
+      %subplot(3,2,2),imshow(o1),title('Gradiente 3 1');
     % Prepare for PCA
 %     ov1 = reshape(o1, 48*48,1);
 %     ov2 = reshape(o2, 48*48,1);
@@ -33,7 +34,9 @@ function [p]= process_img(img_path)
     %%ov1=reshape(o1,48*48,1);
     % PCA
     %result = pca([ov1,ov2,ov3,ov4,ov5,ov6,ov7,ov8])
-    result= aplicaPCA(o1);
+    o2 = imgaussfilt(o1,0.7);
+    imshow(o2),title('kernel gaussiano');
+    result= aplicaPCA(o2);
     result=transpose(result);
     %%[ov1,ov1,ov1,ov1,ov1,ov1,ov1,ov1]
     % Change this to have 8 different inputs of 8 values each

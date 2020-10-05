@@ -3,10 +3,14 @@ function dataReduce = aplicaPCA(img)
  %%imshow(img);
  I = double(img);
  
-numberOfDimensions = 1;
+
+% coeff = pca(I);
+% reducedDimension = coeff(:,1:8);
+% reducedData = I * reducedDimension;
+% reducedData = reshape(reducedData, 48*8,1);
+% 
 coeff = pca(I);
-reducedDimension = coeff(:,1:8);
+reducedDimension = coeff(:,1);
 reducedData = I * reducedDimension;
-reducedData = reshape(reducedData, 48*8,1);
 reducedData=transpose(reducedData);
 dataReduce= reducedData;
