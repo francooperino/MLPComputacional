@@ -3,7 +3,10 @@ function [G,ASP] = gradient8(DEM,res,neigh)
 %imshow(R)
 %B = imgaussfilt(R)
 %imshow(B)
-%
+%R(R<0)=0;
+%subplot(3,2,2),imshow(R),title('Gradiente 2 5')
+%subplot(3,2,2),imshow(R),title('Gradiente 1 5')
+%subplot(3,2,3),imshow(B),title('kernel gaussiano')
 % 8-connected neighborhood gradient and aspect of a digital elevation model
 %
 % [G,ASP] = gradient8(DEM,cellsize)
@@ -73,7 +76,7 @@ ASP = G;
 
 
 % loop through neighbors
-%for neigh = (1:8);
+%for neigh = (1:8)
     G2       = neighfun{neigh,1}(DEM,res);
     I        = G2>G;
     G(I)     = G2(I);
