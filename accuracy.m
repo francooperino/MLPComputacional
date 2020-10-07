@@ -10,7 +10,7 @@ simulationResult = sim(net,input');
 % outputMat(outputMat<=1)=1;
 
 % unique(outputMat)
-numberOfClasses = 7;
+numberOfClasses = 6;
 targetsSize = length(targetMat);
 outputsSize = length(outputMat);
 
@@ -27,12 +27,12 @@ targets(targetsIdx) = 1;
 outputs(outputsIdx) = 1;
 
 
-plotconfusion(targets, outputs)
+%plotconfusion(targets, outputs)
 % This is the handle for the last figure, so it needs to be configured
 % after plotting it.
 h = gca;
-h.XTickLabel = {'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise', ''};
-h.YTickLabel = {'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise', ''};
+h.XTickLabel = {'angry', 'fear', 'happy', 'neutral', 'sad', 'surprise'};
+h.YTickLabel = {'angry', 'fear', 'happy', 'neutral', 'sad', 'surprise'};
 
 h.YTickLabelRotation = 90;
 
