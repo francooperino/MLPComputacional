@@ -7,7 +7,7 @@ test_ds = imageDatastore('training_data\test', 'IncludeSubfolders',true,'LabelSo
 %% Pre-processing
 % Training files for each emotion, limited by the minimum number for a
 % given label
-numTrainFiles = 300;
+numTrainFiles = 350;
 numTestFiles = 50;
 [imgs_ds_train] = splitEachLabel(train_ds,numTrainFiles,'randomize');
 [imgs_ds_test] = splitEachLabel(test_ds,numTestFiles,'randomize');
@@ -23,26 +23,17 @@ inputValidation = arrayfun(@process_img, imgs_ds_test.Files, 'UniformOutput', fa
 targetValidation = arrayfun(@process_label, imgs_ds_test.Labels, 'UniformOutput', false);
 
 %% Network Training
-%net = feedforwardnet(36,'traingda');
-net = network(8,1,[1],[1 1 1 1 1 1 1 1],[0],[1]);
-net.inputs{:}.size=48;
-net.trainFcn = 'traingda'
-%net.trainParam.lr = 0.005;
-%net.trainParam.lr_inc = 1.05;
-%net.trainParam.lr_inc = 1.05;
-%net.trainParam.epochs = 1000;
-%net.divideFcn='divideblock';
-%net.performParam.regularization = 0.01;
+net = feedforwardnet(36);
+net.trainParam.epochs = 1000;
 
 % TODO Esto hace el entrenamiento mucho mas lento.
-
+%net.layers{2}.transferFcn = 'poslin';
 %net.layers{1}.transferFcn = 'tansig';
-%net.layers{2}.transferFcn = 'softmax';
 %net.inputs{1}.size = 8;
 
 view(net);
 %net.numInputs = 2;
-[net, tr] = train(net,inputTrain',targetTrain');
+[net, tr, Y, E] = train(net,inputTrain',targetTrain');
 
 
 %% Simulation
