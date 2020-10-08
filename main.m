@@ -7,7 +7,7 @@ test_ds = imageDatastore('training_data\test', 'IncludeSubfolders',true,'LabelSo
 %% Pre-processing
 % Training files for each emotion, limited by the minimum number for a
 % given label
-numTrainFiles = 350;
+numTrainFiles = 1;
 numTestFiles = 50;
 [imgs_ds_train] = splitEachLabel(train_ds,numTrainFiles,'randomize');
 [imgs_ds_test] = splitEachLabel(test_ds,numTestFiles,'randomize');
