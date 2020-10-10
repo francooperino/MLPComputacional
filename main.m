@@ -7,8 +7,8 @@ test_ds = imageDatastore('training_data\test', 'IncludeSubfolders',true,'LabelSo
 %% Pre-processing
 % Training files for each emotion, limited by the minimum number for a
 % given label
-numTrainFiles = 350;
-numTestFiles = 50;
+numTrainFiles = 1000;
+numTestFiles = 100;
 [imgs_ds_train] = splitEachLabel(train_ds,numTrainFiles,'randomize');
 [imgs_ds_test] = splitEachLabel(test_ds,numTestFiles,'randomize');
  
@@ -23,15 +23,19 @@ inputValidation = arrayfun(@process_img, imgs_ds_test.Files, 'UniformOutput', fa
 targetValidation = arrayfun(@process_label, imgs_ds_test.Labels, 'UniformOutput', false);
 
 %% Network Training
-net = feedforwardnet(36);
-net.trainParam.epochs = 1000;
+net = feedforwardnet(30,'traingda');
+net.trainParam.lr=0.000005;
+net.trainParam.lr_inc=5;
+net.trainParam.epochs = 2000;
+net = init(net);
+
 
 % TODO Esto hace el entrenamiento mucho mas lento.
 %net.layers{2}.transferFcn = 'poslin';
 %net.layers{1}.transferFcn = 'tansig';
 %net.inputs{1}.size = 8;
 
-view(net);
+%view(net);
 %net.numInputs = 2;
 [net, tr, Y, E] = train(net,inputTrain',targetTrain');
 

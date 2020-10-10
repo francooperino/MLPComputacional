@@ -9,7 +9,7 @@ function dataReduce = aplicaPCA(img)
 % reducedData = I * reducedDimension;
 % reducedData = reshape(reducedData, 48*8,1);
 % 
-coeff = pca(I);
+[~,coeff] = pca(I);
 reducedDimension = coeff(:,1);
 reducedData = I * reducedDimension;
 reducedData=transpose(reducedData);

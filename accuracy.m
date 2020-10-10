@@ -1,6 +1,7 @@
 function accuracy(net,input,target)
 
-simulationResult = sim(net,input');
+%simulationResult = sim(net,input');
+simulationResult = net(input');
 [~, targetMat] = max(cell2mat(target'));
 [~, outputMat] = max(cell2mat(simulationResult));
 
@@ -10,7 +11,7 @@ simulationResult = sim(net,input');
 % outputMat(outputMat<=1)=1;
 
 % unique(outputMat)
-numberOfClasses = 7;
+numberOfClasses = 6;
 targetsSize = length(targetMat);
 outputsSize = length(outputMat);
 
@@ -31,8 +32,8 @@ plotconfusion(targets, outputs)
 % This is the handle for the last figure, so it needs to be configured
 % after plotting it.
 h = gca;
-h.XTickLabel = {'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise', ''};
-h.YTickLabel = {'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise', ''};
+h.XTickLabel = {'angry', 'fear', 'happy', 'neutral', 'sad', 'surprise',''};
+h.YTickLabel = {'angry', 'fear', 'happy', 'neutral', 'sad', 'surprise',''};
 
 h.YTickLabelRotation = 90;
 
