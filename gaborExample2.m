@@ -36,7 +36,7 @@ end
 
 
 
-imshow(combined_mag,[]);
+%imshow(combined_mag,[]);
 func = combined_mag;
 
 

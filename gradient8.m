@@ -76,13 +76,14 @@ G   = zeros(siz);
 ASP = G;
 
 
-% loop through neighbors
-%for neigh = (1:8)
+
     G2       = neighfun{neigh,1}(DEM,res);
     I        = G2>G;
     G(I)     = G2(I);
     ASP(I)   = neigh;
     
+   %imshowpair(DEM,ASP,'montage');
+    
    
-%end
+
 
